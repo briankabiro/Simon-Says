@@ -10,13 +10,39 @@
 var app = new Vue({
 	el:'.container',
 	data:{
-		recentArray:[],
-		eachArray:[]
+		userTurn:false,
+		state:'Start',
+		step:'--',
+		isPlaying:'false',
+		pattern:[],
+		index:0,
+		isTopRightActive:false,
+		isTopLeftActive:false,
+		isBottomLeftActive:false,
+		isBottomRightActive:false,
+		score:0,
+		message:null
 	},
 	methods: {
-		startGame: function(event){
-			console.log('Game has started');
-
+		changeState:function(){
+			if(this.state === 'Start'){
+				this.state = 'Stop';
+				this.message = null;
+				this.isPlaying = true;
+				this.computerTurn();
+			}else{
+				this.resetGame();
+			}
+		},
+		computerTurn(){
+			this.index = 0;
+			this.step++;
+			this.pattern.push(this.getRandomNumberOnetoFour());
+			this.showPattern(function(){
+				this.userTurn = true;
+			});
+		},
+		played(boxNum){
 			
 		}
 	}
