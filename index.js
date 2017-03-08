@@ -43,7 +43,95 @@ var app = new Vue({
 			});
 		},
 		played(boxNum){
-			
+			if(this.state == 'Start'){
+				return;
+			}	
+			this.clickEffect(boxNum);
+			var isCorrect = this.checkPattern(boxNum);
+			if(!isCorrect){
+				this.showPattern();
+			}else{
+				if(this.index === this.pattern.length - 1){
+					this.score++;
+					setTimeout(function(){
+						this.userTurn = false;
+						this.computerTurn();
+					},1000);
+				}else{
+					this.index++;
+				}
+			}
+		},
+		processGameOver(){
+			this.message = 'Game Over.';
+			console.log('Score' + this.score);
+			this.resetGame();
+		},
+		getRandomNumberOnetoFour(){
+			return Math.floor(Math.random() * 4 + 1);
+		},
+		checkPattern(boxNum){
+			return (this.pattern[this.index] === boxNum);
+		},
+		resetGame(){
+			this.step = '--';
+			this.userTurn = false;
+			this.state = 'Start';
+			this.score = 0;
+			this.isPlaying = false;
+			this.pattern = [];
+			this.index = 0;
+		},
+		showPattern(){
+			var i = 0;
+			var timer = setInterval(function(){
+				if(i>=this.pattern.length){
+					this.stopInterval();
+				}
+				this.clickEffect(this.pattern[i]);
+				i++;
+			}, 500);
+			callback();
+		},
+		stopInterval(){
+			clearInterval(timer);
+		},
+		changeMode(){
+			if(this.state !== 'Start'){
+				return;
+			}
+		},
+		clickEffect(boxNum){
+			switch(boxNum){
+				case 1:
+				this.BoxOneActive = true;
+				setTimeout(function(){
+					this.isBoxOneActive = false;
+				},100);
+				break;
+				case 2:
+		          this.isBoxTwoActive = true;
+		          
+		          setTimeout(function() {
+		            self.isBoxTwoActive = false;
+		          }, 100);
+		        break;
+		        case 3:
+		          this.isBoxThreeActive = true;
+		       
+		          setTimeout(function() {
+		            self.isBoxThreeActive = false;
+		          },100);
+		          break;
+		        case 4:
+		          this.isBoxFourActive = true;
+		          
+		          setTimeout(function() {
+		            self.isBoxFourActive = false;
+		          }, 100);
+		        break;
+			}
+			return;
 		}
 	}
-})
+});
