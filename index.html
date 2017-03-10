@@ -19,7 +19,8 @@
 			</div>
 			<div class="inner-circle">
 				<div class="start-button" @click="changeState()" v-bind:class="{red: isPlaying}">&nbsp;</div>
-				
+				<div class="counter">{{step}}</div>
+				<div class="hi-score">Hi {{hiScore}}</div>
 			</div>
 		</div>
 	</div>

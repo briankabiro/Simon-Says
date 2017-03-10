@@ -37,7 +37,7 @@
 	border-bottom-right-radius: 100%;
 }
 .active{
-	background-color: hsl(50,50%,10%);
+	background-color: white;
 }
 .inner-circle{
 	position:absolute;
@@ -50,6 +50,7 @@
 	border-radius: 100%;
 	background-color: grey;
 	padding:0 auto;
+	text-align: center;
 }
 .start-button{
 	display: inline-block;
@@ -66,4 +67,13 @@
 #play-button{
 	border:none;
 	color:black;
+}
+.hi-score{
+	font-weight: 800;
+	color:darkgray;
+	margin-top: 15px;
+	font-size: 22px;
+}
+.red{
+	background-color: red
 }

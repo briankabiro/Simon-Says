@@ -7,13 +7,14 @@
 	click, the game starts from one. it highlights that one and saves it in that array
 	keeps track of user clicks and then checks it after
 */
+var timer;
 var app = new Vue({
 	el:'.container',
 	data:{
 		userTurn:false,
 		state:'Start',
 		step:'--',
-		isPlaying:'false',
+		isPlaying:false,
 		pattern:[],
 		index:0,
 		isTopRightActive:false,
@@ -21,7 +22,8 @@ var app = new Vue({
 		isBottomLeftActive:false,
 		isBottomRightActive:false,
 		score:0,
-		message:null
+		message:null,
+		hiScore:0
 	},
 	methods: {
 		changeState:function(){
@@ -56,7 +58,7 @@ var app = new Vue({
 					setTimeout(function(){
 						this.userTurn = false;
 						this.computerTurn();
-					},1000);
+					}.bind(this),1000);
 				}else{
 					this.index++;
 				}
@@ -84,14 +86,13 @@ var app = new Vue({
 		},
 		showPattern(){
 			var i = 0;
-			var timer = setInterval(function(){
+			timer = setInterval(function(){
 				if(i>=this.pattern.length){
 					this.stopInterval();
 				}
 				this.clickEffect(this.pattern[i]);
 				i++;
-			}, 500);
-			callback();
+			}.bind(this), 500);
 		},
 		stopInterval(){
 			clearInterval(timer);
@@ -105,30 +106,32 @@ var app = new Vue({
 			switch(boxNum){
 				case 1:
 				this.BoxOneActive = true;
+				console.log(this.BoxOneActive);
 				setTimeout(function(){
 					this.isBoxOneActive = false;
-				},100);
+
+				}.bind(this),100);
 				break;
 				case 2:
 		          this.isBoxTwoActive = true;
 		          
 		          setTimeout(function() {
-		            self.isBoxTwoActive = false;
-		          }, 100);
+		            this.isBoxTwoActive = false;
+		          }.bind(this), 100);
 		        break;
 		        case 3:
 		          this.isBoxThreeActive = true;
 		       
 		          setTimeout(function() {
-		            self.isBoxThreeActive = false;
-		          },100);
+		            this.isBoxThreeActive = false;
+		          }.bind(this),100);
 		          break;
 		        case 4:
 		          this.isBoxFourActive = true;
 		          
 		          setTimeout(function() {
-		            self.isBoxFourActive = false;
-		          }, 100);
+		            this.isBoxFourActive = false;
+		          }.bind(this), 100);
 		        break;
 			}
 			return;
