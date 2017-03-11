@@ -38,8 +38,10 @@ var app = new Vue({
 		},
 		computerTurn(){
 			this.index = 0;
+			this.step = 0;
 			this.step++;
 			this.pattern.push(this.getRandomNumberOnetoFour());
+			console.log(this.pattern);
 			this.showPattern(function(){
 				this.userTurn = true;
 			});
@@ -47,10 +49,11 @@ var app = new Vue({
 		played(boxNum){
 			if(this.state == 'Start'){
 				return;
-			}	
+			}
 			this.clickEffect(boxNum);
 			var isCorrect = this.checkPattern(boxNum);
 			if(!isCorrect){
+				console.log('Incorrect')
 				this.showPattern();
 			}else{
 				if(this.index === this.pattern.length - 1){
@@ -105,32 +108,27 @@ var app = new Vue({
 		clickEffect(boxNum){
 			switch(boxNum){
 				case 1:
-				this.BoxOneActive = true;
-				console.log(this.BoxOneActive);
+				this.isTopLeftActive = true;
 				setTimeout(function(){
-					this.isBoxOneActive = false;
-
+					this.isTopLeftActive = false;
 				}.bind(this),100);
 				break;
 				case 2:
-		          this.isBoxTwoActive = true;
-		          
+		          this.isTopRightActive = true;
 		          setTimeout(function() {
-		            this.isBoxTwoActive = false;
+		            this.isTopRightActive = false;
 		          }.bind(this), 100);
 		        break;
 		        case 3:
-		          this.isBoxThreeActive = true;
-		       
+		          this.isBottomLeftActive = true;
 		          setTimeout(function() {
-		            this.isBoxThreeActive = false;
+		            this.isBottomLeftActive = false;
 		          }.bind(this),100);
 		          break;
 		        case 4:
-		          this.isBoxFourActive = true;
-		          
+		          this.isBottomRightActive = true;
 		          setTimeout(function() {
-		            this.isBoxFourActive = false;
+		            this.isBottomRightActive = false;
 		          }.bind(this), 100);
 		        break;
 			}
