@@ -37,14 +37,16 @@ var app = new Vue({
 			}
 		},
 		computerTurn(){
+			if(this.step === '--'){
+				this.step = 0;
+			}
 			this.index = 0;
-			this.step = 0;
 			this.step++;
 			this.pattern.push(this.getRandomNumberOnetoFour());
 			console.log(this.pattern);
 			this.showPattern(function(){
 				this.userTurn = true;
-			});
+			}.bind(this));
 		},
 		played(boxNum){
 			if(this.state == 'Start'){

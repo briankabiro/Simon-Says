@@ -10,6 +10,9 @@
 	position:absolute;
 	top:150px;
 }
+.flash{
+	background-color: hsl(50,50%,10%);
+}
 #top-left,#top-right,#bottom-left,#bottom-right{
 	display: inline-block;
 	width:150px;
@@ -36,9 +39,7 @@
 	background-color: blue;
 	border-bottom-right-radius: 100%;
 }
-.active{
-	background-color: white;
-}
+
 .inner-circle{
 	position:absolute;
 	top:55px;
@@ -61,7 +62,6 @@
 	text-align: center;
 	cursor: pointer;
 	margin-top: 35%;
-	margin-left: 10px;
 	z-index: 800;
 }
 #play-button{

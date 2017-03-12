@@ -8,14 +8,14 @@
 	<div class="container">
 		<div id="circle">
 			<div id='top-divs'>
-				<div @click = "played(1)" id="top-left" v-bind:class="{ active: isTopLeftActive}"></div>
-				<div @click = "played(2)" id="top-right" v-bind:class="{ active: isTopRightActive}"></div>
+				<div @click = "played(1)" id="top-left" v-bind:class="{flash: isTopLeftActive}"></div>
+				<div @click = "played(2)" id="top-right" v-bind:class="{flash: isTopRightActive}"></div>
 			</div>
 			<div id="bottom-divs">
 				<div id="bottom-left" @click= "played(3)"
-				v-bind:class="{ active: isBottomLeftActive}"></div>
+				v-bind:class="{flash: isBottomLeftActive}"></div>
 				<div id="bottom-right" @click = "played(4)"
-				v-bind:class="{ active: isBottomRightActive}"></div>
+				v-bind:class="{flash: isBottomRightActive}"></div>
 			</div>
 			<div class="inner-circle">
 				<div class="start-button" @click="changeState()" v-bind:class="{red: isPlaying}">&nbsp;</div>
